@@ -1,0 +1,81 @@
+@model DentistBooking.Models.Reservation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Reservation</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ProcedureId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ProcedureId" class="form-control" asp-items="ViewBag.ProcedureId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MedicId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="MedicId" class="form-control" asp-items="ViewBag.MedicId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReservationTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReservationTime" class="form-control" type="datetime-local" />
+                <span asp-validation-for="ReservationTime" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <label asp-for="FullName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Comments" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Comments" class="form-control" rows="4" placeholder="Some comments here..."></textarea>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <environment names="Development">
+        <script src="~/lib/tooltipster/dist/js/tooltipster.bundle.js"></script>
+        <script src="~/lib/lodash/dist/lodash.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+}
