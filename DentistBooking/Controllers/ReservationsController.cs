@@ -30,10 +30,14 @@ namespace DentistBooking.Controllers
                 .Include(r => r.Procedure)
                 .OrderBy(r => r.FullName)
                 .AsEnumerable();
+        
+            //Sorting and filtering parameters
             ViewData["SearchString"] = searchString;
             ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["PhoneSortParam"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
+            ViewData["EmailSortParam"] = sortOrder == "Email" ? "email_desc" : "Email";
+            ViewData["MedicSortParam"] = sortOrder == "Medic" ? "medic_desc" : "Medic";
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -56,6 +60,18 @@ namespace DentistBooking.Controllers
                     break;
                 case "phone_desc":
                     resultList = resultList.OrderByDescending(s => s.Phone);
+                    break;
+                case "Email":
+                    resultList = resultList.OrderBy(e => e.Email);
+                    break;
+                case "email_desc":
+                    resultList = resultList.OrderByDescending(e => e.Email);
+                    break;
+                case "Medic":
+                    resultList = resultList.OrderBy(m => m.Medic.Name);
+                    break;
+                case "medic_desc":
+                    resultList = resultList.OrderByDescending(m => m.Medic.Name);
                     break;
             }
             return View(resultList.ToList());

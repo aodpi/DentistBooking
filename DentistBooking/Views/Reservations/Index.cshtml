@@ -27,7 +27,7 @@
                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PhoneSortParam"]">@Html.DisplayNameFor(model => model.Phone)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                   <a asp-action="Index" asp-route-sortOrder="@ViewData["EmailSortParam"]">@Html.DisplayNameFor(model => model.Email)</a>
                 </th>
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]">@Html.DisplayNameFor(model => model.ReservationTime)</a>
@@ -36,7 +36,7 @@
                     @Html.DisplayNameFor(model => model.Comments)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.Medic)
+                <a asp-action="Index" asp-rout-sortOrder="@ViewData["MedicSortParam"]">@Html.DisplayNameFor(model => model.Medic)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Procedure)
