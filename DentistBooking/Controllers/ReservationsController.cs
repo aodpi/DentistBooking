@@ -41,7 +41,12 @@ namespace DentistBooking.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                resultList = resultList.Where((r) => r.Medic.Name.Contains(searchString));
+                searchString = searchString.ToLower();
+                resultList = resultList.Where((r) => r.Medic.Name.ToLower().Contains(searchString)
+                        || r.FullName.ToLower().Contains(searchString)
+                        || r.Email.ToLower().Contains(searchString)
+                        || r.Procedure.Name.ToLower().Contains(searchString));
+            
             }
 
             switch (sortOrder)

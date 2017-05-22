@@ -26,10 +26,12 @@ namespace DentistBooking.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
+        /// <summary>
+        /// Seed the database with some data
+        /// </summary>
+        /// <param name="app">Instance of <see cref="IApplicationBuilder"/></param>
         public async static void Seed(IApplicationBuilder app)
         {
-
-            // Get an instance of the DbContext from the DI container
             using (var context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>())
             {
                 context.Database.EnsureCreated();

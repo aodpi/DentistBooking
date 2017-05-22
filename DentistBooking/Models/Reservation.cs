@@ -25,11 +25,11 @@ namespace DentistBooking.Models
         [StringLength(250)]
         public string Comments { get; set; }
 
-        [Required, Display(Name = "Choose a procedure:")]
+        [Required, Display(Name = "Choose a doctor:")]
         public int MedicId { get; set; }
         public virtual Medic Medic { get; set; }
 
-        [Required, Display(Name = "Choose a doctor:")]
+        [Required, Display(Name = "Choose a procedure:")]
         public int ProcedureId { get; set; }
         public virtual Procedure Procedure { get; set; }
         
