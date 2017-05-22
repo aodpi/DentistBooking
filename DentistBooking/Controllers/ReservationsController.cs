@@ -23,15 +23,17 @@ namespace DentistBooking.Controllers
 
         // GET: Reservations
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public IActionResult Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.Reservations.Include(r => r.Medic).Include(r => r.Procedure);
+            var resultList = _context.Reservations
+                .Include(r => r.Medic)
+                .Include(r => r.Procedure)
+                .OrderBy(r => r.FullName)
+                .AsEnumerable();
             ViewData["SearchString"] = searchString;
             ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["PhoneSortParam"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
-
-            var resultList = applicationDbContext.OrderBy(f => f.FullName).AsEnumerable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
